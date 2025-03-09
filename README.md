@@ -1,7 +1,16 @@
-# bitbucket repository backup
-Archive all git repositories on bitbucket.
+# bitbucket repository backup tool
 
-# USAGE
+## USAGE
+
+### backup
 ```
-ruby backup.rb USER_NAME PASSWORD
+ruby backup.rb USER APP_PASSWORD
+```
+
+### copy to github
+```
+write repos.txt
+
+./create_github_repos.sh
+./migrate_repos.sh
 ```

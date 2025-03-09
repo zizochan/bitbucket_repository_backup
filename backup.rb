@@ -4,10 +4,10 @@ require "uri"
 require "date"
 
 USER     = ARGV[0]
-PASSWORD = ARGV[1]
+APP_PASSWORD = ARGV[1]
 
-if USER.nil? || PASSWORD.nil?
-  raise "[USAGE] ruby backup.rb USER_NAME PASSWORD"
+if USER.nil? || APP_PASSWORD.nil?
+  raise "[USAGE] ruby backup.rb USER_NAME APP_PASSWORD"
 end
 
 OUTPUT_DIR = "output/#{Date.today}"
@@ -32,7 +32,7 @@ def get_all_repository_names
 end
 
 def get_repository_names(page_id)
-  command   = "curl -s --user #{USER}:#{PASSWORD} https://api.bitbucket.org/2.0/repositories/#{USER}?page=#{page_id}"
+  command   = "curl -s --user #{USER}:#{APP_PASSWORD} https://api.bitbucket.org/2.0/repositories/#{USER}?page=#{page_id}"
   response  = JSON.parse(`#{command}`)
   repository_names = response["values"].map{|value| value["name"] }
   next_page_id = parse_page_id(response["next"])
